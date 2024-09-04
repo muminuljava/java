@@ -1,26 +1,24 @@
+//Created by Muminul Islam
 
-import java.awt.Container;
-import java.awt.GridLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 
-class Gui extends JFrame{
+
+public class Gui extends JFrame{
     //Gui Elements
     String WindowTitle="Make A Connection!";
     int frameHeight;
     int frameWidth;
 
             //Local Machine Details
-    JTextArea localIpShowTextArea;
-    JTextArea localPortShowTextArea;
-    JButton localInfoButton;
+    JTextArea LocalMachineDetail;
+
             //Remote Machine Details
-    JTextField remoteIpInputTextfield;
-    JTextField remotePortInputTextfield;
-    JButton RemoteConnectButton;
+    JTextField remoteMachineDetail;
+    JButton remoteConnectButton;
+
             //Message Details
     JTextArea msgShowArea;
     JTextField msgTypingArea;
@@ -29,32 +27,77 @@ class Gui extends JFrame{
     
     //Constructor
     public Gui(){
+        //Setting up Variables
+        frameHeight=400;
+        frameWidth=200;
+
         //Local Machine Detail
-        localIpShowTextArea=new JTextArea();
-        localPortShowTextArea=new JTextArea();
-        localInfoButton=new JButton("Ping");
+        LocalMachineDetail=new JTextArea();
+        LocalMachineDetail.setEditable(false);
 
         //Remote Machine Detail
-        remoteIpInputTextfield=new JTextField();
-        remotePortInputTextfield=new JTextField();
-        RemoteConnectButton=new JButton("Connect");
+        remoteMachineDetail=new JTextField(100);
+        remoteMachineDetail.setEditable(true);
 
-        //Message Portion
+        //Remote Machine Connect Button
+        remoteConnectButton=new JButton("Connect");
+
+        //Message Show Text Area
         msgShowArea=new JTextArea();
-        msgTypingArea=new JTextField();
+        msgShowArea.setEditable(false);
+
+        //Message Input Text Area
+        msgTypingArea=new JTextField(100);
+        msgTypingArea.setEditable(true);
+
+        //Message Send Button
         msgSendButton=new JButton("Send Message");
+
 
         //Now Main GUI
         Container cp=getContentPane(); //Container of GUI Element
-        cp.setLayout(new GridLayout(0,2)); //Setting Layout of GUI
+        cp.setLayout(new GridLayout(6,0)); //Setting Layout of GUI
 
-            //Add all component into contianer
-            cp.add(localIpShowTextArea);
-            cp.add(localPortShowTextArea);
-            cp.add(localInfoButton);
+                //Add all component into contianer
+        cp.add(LocalMachineDetail);
+        cp.add(remoteMachineDetail);
+        cp.add(remoteConnectButton);
+        cp.add(msgShowArea);
+        cp.add(msgTypingArea);
+        cp.add(msgSendButton);
+        
+                //Set Window
+        setTitle(WindowTitle);
+        setPreferredSize(new Dimension(frameWidth, frameHeight));
+        pack();
+        setVisible(true);
 
+        //Set up Listener
+        remoteMachineDetail.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyTyped(KeyEvent e){
+                        
+                }
 
+        });
 
+        remoteConnectButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e){
+                        
+                }
+        });
+
+        msgTypingArea.addKeyListener(new KeyAdapter() {
+        
+        });
+
+        msgSendButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e){
+                        
+                }
+        });
 
     }
 }
